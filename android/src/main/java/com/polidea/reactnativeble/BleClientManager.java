@@ -1,5 +1,8 @@
 package com.polidea.reactnativeble;
 
+import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
+
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -37,10 +40,6 @@ import com.polidea.reactnativeble.utils.SafePromise;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 
 public class BleClientManager extends ReactContextBaseJavaModule {
 
