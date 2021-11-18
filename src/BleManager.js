@@ -410,6 +410,23 @@ export class BleManager {
     return new Device(nativeDevice, this)
   }
 
+  /**
+   * Request new PHY value for this device.
+   * @param {DeviceId} deviceIdentifier Device identifier.
+   * @param {number} txPhy New txPhy to negotiate.
+   * @param {number} rxPhy New rxPhy to negotiate.
+   * @param {number} phyOptions New phyOptions to negotiate.
+   * @param {?TransactionId} transactionId Transaction handle used to cancel operation
+   * @returns {Promise<Device>} Device with updated PHY.
+   */
+  async requestPhyForDevice(deviceIdentifier: DeviceId, txPhy: number, rxPhy: number, phyOptions: number, transactionId: ?TransactionId): Promise<Device> {
+    if (!transactionId) {
+      transactionId = this._nextUniqueID()
+    }
+    const nativeDevice = await this._callPromise(BleModule.requestPhyForDevice(deviceIdentifier, txPhy, rxPhy, phyOptions, transactionId))
+    return new Device(nativeDevice, this)
+  }
+
   // Mark: Connection management ---------------------------------------------------------------------------------------
 
   /**

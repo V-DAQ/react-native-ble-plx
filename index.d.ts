@@ -772,6 +772,10 @@ declare module 'react-native-ble-plx' {
      * @private
      */
     mtu: number
+    /**
+     * @private
+     */
+    phy: number
 
     // Advertisement
 
@@ -1152,6 +1156,17 @@ declare module 'react-native-ble-plx' {
      */
     requestMTUForDevice(deviceIdentifier: DeviceId, mtu: number, transactionId?: TransactionId): Promise<Device>
 
+    /**
+     * Request new PHY value for this device.
+     * @param {DeviceId} deviceIdentifier Device identifier.
+     * @param {number} txPhy New txPhy to negotiate.
+     * @param {number} rxPhy New rxPhy to negotiate.
+     * @param {number} phyOptions New phyOptions to negotiate.
+     * @param {?TransactionId} transactionId Transaction handle used to cancel operation
+     * @returns {Promise<Device>} Device with updated PHY.
+     */
+    requestPhyForDevice(deviceIdentifier: DeviceId, txPhy: number, rxPhy: number, phyOptions: number, transactionId?: TransactionId): Promise<Device>
+
     // Mark: Connection management -------------------------------------------------------------------------------------
 
     /**
@@ -1489,6 +1504,13 @@ declare module 'react-native-ble-plx' {
      * @returns {Promise<Device>} Device with updated MTU size. Default value is 23.
      */
     requestMTU(mtu: number, transactionId?: TransactionId): Promise<Device>
+
+    /**
+     *
+     * @param {?TransactionId} transactionId Transaction handle used to cancel operation.
+     * @returns {Promise<Device>} Device with updated Phy.
+     */
+    requestPhy(txPhy: number, rxPhy: number, phyOptions: number, transactionId?: TransactionId): Promise<Device>
 
     /**
      * {@link #blemanagerconnecttodevice|bleManager.connectToDevice()} with partially filled arguments.

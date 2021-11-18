@@ -42,6 +42,8 @@ export class Device implements NativeDevice {
    */
   mtu: number
 
+  phy: number
+
   // Advertisement
 
   /**
@@ -127,6 +129,14 @@ export class Device implements NativeDevice {
    */
   requestMTU(mtu: number, transactionId: ?TransactionId): Promise<Device> {
     return this._manager.requestMTUForDevice(this.id, mtu, transactionId)
+  }
+
+  /**
+   * @param {?TransactionId} transactionId Transaction handle used to cancel operation.
+   * @returns {Promise<Device>} Device with updated Phy.
+   */
+  requestPhy(txPhy: number, rxPhy: number, phyOptions: number, transactionId: ?TransactionId): Promise<Device> {
+     return this._manager.requestPhyForDevice(this.id, txPhy, rxPhy, phyOptions, transactionId)
   }
 
   /**
