@@ -12,6 +12,7 @@ public class DeviceToJsObjectConverter extends JSObjectConverter<Device> {
         String NAME = "name";
         String RSSI = "rssi";
         String MTU = "mtu";
+        String PHY = "phy";
 
         String MANUFACTURER_DATA = "manufacturerData";
         String SERVICE_DATA = "serviceData";
@@ -38,6 +39,11 @@ public class DeviceToJsObjectConverter extends JSObjectConverter<Device> {
             result.putInt(Metadata.MTU, value.getMtu());
         } else {
             result.putNull(Metadata.MTU);
+        }
+        if (value.getPhy() != null) {
+            result.putInt(Metadata.PHY, value.getPhy());
+        } else {
+            result.putNull(Metadata.PHY);
         }
 
         // Advertisement data is not set
