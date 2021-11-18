@@ -274,6 +274,23 @@ public class BleClientManager extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
+    public void requestPhyForDevice(final String deviceId, int txPhy, int rxPhy, int phyOptions, final String transactionId, final Promise promise) {
+        final SafePromise safePromise = new SafePromise(promise);
+        bleAdapter.requestPHYForDevice(deviceId, txPhy, rxPhy, phyOptions, transactionId,
+                new OnSuccessCallback<Device>() {
+                    @Override
+                    public void onSuccess(Device data) {
+                        safePromise.resolve(deviceConverter.toJSObject(data));
+                    }
+                }, new OnErrorCallback() {
+                    @Override
+                    public void onError(BleError error) {
+                        safePromise.reject(null, errorConverter.toJs(error));
+                    }
+                });
+    }
+
+    @ReactMethod
     public void readRSSIForDevice(final String deviceId, final String transactionId, final Promise promise) {
         final SafePromise safePromise = new SafePromise(promise);
         bleAdapter.readRSSIForDevice(deviceId, transactionId,
