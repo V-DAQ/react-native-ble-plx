@@ -1429,6 +1429,8 @@ declare module 'react-native-ble-plx' {
      */
     mtu: number
 
+    phy: number
+
     // Advertisement
 
     /**
